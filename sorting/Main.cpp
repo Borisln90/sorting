@@ -1,5 +1,6 @@
 #include <iostream>
 #include "BinarySearchTree.h"
+#include "RedBlackTree.h"
 
 using namespace std;
 
@@ -158,20 +159,20 @@ void mergeSort(int a[], int p, int r)
 
 int main(int argc, char** argv) 
 {
-    bst b = BinarySearchTree();
+    rbt b = RedBlackTree();
     
     int arr[5] = {5,4,3,2,1};
     int arrs[20] = {9,7,4,6,3,1,2,5,8,0,44,2,3,44,5,6,7,4,332,7};
 
     for (int i = 0; i < 20; i++)
     {
-        b.treeInsert(b, new Node(arrs[i]));
+        b.RbInsert(b, new RBNode(arrs[i]));
         
     }
 
-    b.inorderTreeWalk(b.getRoot());
+    b.inorderTreeWalk();
     cout << endl;
-    cout << "Tree Search: " << b.treeSucessor(b.getRoot())->key;
+    cout << "Tree Search: " << b.treeSuccessor(b.getRoot())->key;
 
     /*
     mergeSort(arr, 0, 4);

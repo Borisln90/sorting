@@ -7,15 +7,29 @@ class RedBlackTree
 {
 private: 
     rbPtr root;
+    void setRoot(rbPtr x);
+    void rbTransplant(RedBlackTree &T, rbPtr u, rbPtr v);
+    void rbDeleteFixup(RedBlackTree &T, rbPtr x);
+    rbPtr treeMinimum(rbPtr x);
+    rbPtr treeMaximum(rbPtr x);
+    void inorderTreeWalk(rbPtr x);
+    void RbInsertFixup(RedBlackTree &T, rbPtr z);
+    void leftRotate(RedBlackTree &T, rbPtr z);
+    void rightRotate(RedBlackTree &T, rbPtr z);
 
 public:
     static const rbPtr nil;
     RedBlackTree();
-    void setRoot(rbPtr x);
-    void leftRotate(RedBlackTree &T, rbPtr x);
+    rbPtr getRoot();
+    void inorderTreeWalk();
+    void RbInsert(RedBlackTree &T, rbPtr z);
+    void rbDelete(RedBlackTree &T, rbPtr z);
+    rbPtr treeSearch(rbPtr x, int k);
+    rbPtr iterativeTreeSearch(rbPtr x, int k);
+    rbPtr treeSuccessor(rbPtr x);
+    rbPtr treePredecessor(rbPtr x); 
+    
 };
-
-const rbPtr RedBlackTree::nil = new RBNode(NULL, BLACK);
 
 typedef class RedBlackTree rbt;
 #endif

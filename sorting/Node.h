@@ -31,7 +31,10 @@ struct RBNode
     RBNode* parent;
     int key;
     int color;
-    RBNode() {}
+    RBNode(int value)
+    {
+        key = value;
+    }
     RBNode(int value, int c)
     {
         left = NULL;
