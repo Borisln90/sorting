@@ -1,21 +1,7 @@
 #ifndef BINARYSEARCHTREE_H
 #define BINARYSEARCHTREE_H
 
-struct Node
-    {
-        Node* left;
-        Node* right;
-        Node* parent;
-        int key;
-        Node(int value)
-        {
-            left = NULL;
-            right = NULL;
-            key = value;
-        }
-    };
-
-typedef struct Node* nodePtr;
+#include "Node.h"
 
 class BinarySearchTree
 {
