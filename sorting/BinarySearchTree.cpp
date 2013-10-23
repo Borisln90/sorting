@@ -28,6 +28,11 @@ BinarySearchTree::BinarySearchTree()
     root = NULL;
 }
 
+BinarySearchTree::~BinarySearchTree()
+{
+    delete root;
+}
+
 Node* BinarySearchTree::getRoot()
 {
     return root;

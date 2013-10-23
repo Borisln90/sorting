@@ -12,6 +12,7 @@ public:
 
 
     BinarySearchTree();
+    ~BinarySearchTree();
     Node* getRoot();
     void setRoot(nodePtr x);
     void inorderTreeWalk(nodePtr x);
