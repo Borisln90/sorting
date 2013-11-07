@@ -184,3 +184,9 @@ int main(int argc, char** argv)
     cin.get();
     return 0;
 }
+
+
+void hi()
+{
+    int i = 0;
+}

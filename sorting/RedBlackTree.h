@@ -32,4 +32,5 @@ public:
 };
 
 typedef class RedBlackTree rbt;
+
 #endif
