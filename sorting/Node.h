@@ -20,11 +20,6 @@ struct Node
             right = NULL;
             key = value;
         }
-        ~Node()
-        {
-            delete left;
-            delete right;
-        }
     };
 
 typedef struct Node* nodePtr;
