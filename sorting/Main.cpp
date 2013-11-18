@@ -1,4 +1,6 @@
 #include <iostream>
+#include <time.h>
+#include <algorithm>
 #include "BinarySearchTree.h"
 #include "RedBlackTree.h"
 
@@ -13,6 +15,9 @@ void mergeSort(int a[], int p, int r);
 void merge(int a[], int p, int q, int r);
 void swap(int& a, int& b);
 void print(int arr[], int length);
+int randomizedPartition(int a[], int p, int r);
+int randomizedSelect(int a[], int p, int r, int i);
+void median(int a[], int left, int right, int k);
 
 void swap(int& a, int& b)
 {
@@ -157,36 +162,63 @@ void mergeSort(int a[], int p, int r)
 }
 
 
-int main(int argc, char** argv) 
-{
-    rbt b = RedBlackTree();
-    
-    int arr[5] = {5,4,3,2,1};
-    int arrs[20] = {9,7,4,6,3,1,2,5,8,0,44,2,3,44,5,6,7,4,332,7};
 
-    for (int i = 0; i < 20; i++)
-    {
-        b.RbInsert(b, new RBNode(arrs[i]));
-        
-    }
-
-    b.inorderTreeWalk();
-    cout << endl;
-    cout << "Tree Search: " << b.treeSuccessor(b.getRoot())->key;
-
-    /*
-    mergeSort(arr, 0, 4);
-    mergeSort(arrs, 0, 19);
-
-    print(arr, 5);
-    print(arrs, 20);
-    */
-    cin.get();
-    return 0;
+int random(int a, int b){
+    int range = (b - a);
+    return a + int((range * rand()) / (RAND_MAX + 1.0));
 }
 
+int randomizedPartition(int a[], int p, int r){
+    int i = random(p, r);
+    swap(a[r], a[i]);
+    return partition(a, p, r);
+}
 
-void hi()
-{
-    int i = 0;
+int randomizedSelect(int a[], int p, int r, int i){
+    if (p == r)
+    {
+        return a[p];
+    }
+    int q = randomizedPartition(a, p, r);
+    int k = q - p + 1;
+    if (i == k)
+    {
+        return a[q];
+    }
+    else if (i < k)
+    {
+        return randomizedSelect(a, p, q - 1, i);
+    }
+    else
+    {
+        return randomizedSelect(a, q + 1, r, i - k);
+    }
+}
+
+int main(int argc, char** argv) 
+{   
+    srand((unsigned)time(0));
+
+    int size = 200;
+    clock_t t1, t2;
+
+
+    int * arrs = new int[size];
+    for (int i = 0; i < size; i++)
+    {
+        arrs[i] = i;
+    }
+    
+
+
+    //int arrs[21] = {9,7,4,6,3,1,2,20,8,0,44,2,3,44,5,6,7,4,332,7, 8};
+    t1 = clock();
+    int ran = randomizedSelect(arrs, 0, size-1, (size/2)+1);
+    t2 = clock();
+    float diff = ((float)t2 - (float)t1)/(CLOCKS_PER_SEC/1000);
+    cout << diff << endl;
+
+    delete[] arrs;
+    cin.get();
+    return 0;
 }
